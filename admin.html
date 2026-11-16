@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard - স্বপ্নের হাট</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 0; }
+        .header { background: #2c3e50; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .header a { color: white; text-decoration: none; background: #00b4db; padding: 8px 15px; border-radius: 4px; font-size: 14px; }
+        .container { max-width: 1000px; margin: 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #333; border-bottom: 2px solid #00b4db; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; font-size: 14px; }
+        th { background: #0083b0; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .clear-btn { background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; float: right; margin-bottom: 10px; }
+        .badge { background: #27ae60; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>স্বপ্নের হাট - Owner Panel</h1>
+        <div>
+            <a href="index.html">হোম পেজ</a>
+            <a href="laptop.html" style="margin-left: 10px;">ল্যাপটপ পেজ</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="clear-btn" onclick="clearAllOrders()">সব অর্ডার মুছে ফেলুন</button>
+        <h2>কাস্টমার অর্ডার লিস্ট</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>অর্ডার আইডি ও সময়</th>
+                    <th>কাস্টমারের তথ্য</th>
+                    <th>অর্ডারকৃত পণ্য</th>
+                    <th>মোট বিল</th>
+                    <th>অবস্থা</th>
+                </tr>
+            </thead>
+            <tbody id="orderTableBody">
+                <!-- জাভাস্ক্রিপ্ট দিয়ে অর্ডার লোড হবে -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function loadOrders() {
+            let orders = JSON.parse(localStorage.getItem('shopnerHatOrders')) || [];
+            let tbody = document.getElementById('orderTableBody');
+
+            if (orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#777;">এখনো কোনো অর্ডার আসেনি।</td></tr>';
+                return;
+            }
+
+            let html = '';
+            // নতুন অর্ডারগুলো সবার আগে দেখানোর জন্য reverse() ব্যবহার করা হয়েছে
+            orders.slice().reverse().forEach(order => {
+                let itemList = order.items.map(i => `• ${i.name} (৳${i.price})`).join('<br>');
+                
+                html += `
+                    <tr>
+                        <td><strong>${order.id}</strong><br><small style="color:#666;">${order.date}</small></td>
+                        <td>
+                            <strong>নাম:</strong> ${order.name}<br>
+                            <strong>ফোন:</strong> ${order.phone}<br>
+                            <strong>ঠিকানা:</strong> ${order.address}
+                        </td>
+                        <td>${itemList}</td>
+                        <td style="color:#e74c3c; font-weight:bold;">৳ ${order.total.toLocaleString()}</td>
+                        <td><span class="badge">নতুন অর্ডার</span></td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        function clearAllOrders() {
+            if (confirm('আপনি কি নিশ্চিত যে সব অর্ডারের তথ্য মুছে ফেলতে চান?')) {
+                localStorage.removeItem('shopnerHatOrders');
+                loadOrders();
+            }
+        }
+
+        // পেজ লোড হলেই অর্ডারগুলো দেখাবে
+        loadOrders();
+    </script>
+
+</body>
+</html>

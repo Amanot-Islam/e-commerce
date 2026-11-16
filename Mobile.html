@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Series - স্বপ্নের হাট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Layout */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: #f9f9f9;
+        }
+        .mobile-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .mobile-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .mobile-card:hover {
+            transform: translateY(-5px);
+            border-color: #00b4db;
+        }
+        .mobile-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .mobile-card h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .mobile-card .price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        .buy-btn {
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Cart Button & Drawer Styles */
+        .cart-trigger-btn {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .top-bar-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            max-width: 85%;
+            height: 100%;
+            background: #fff;
+            box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+            transition: 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .cart-drawer.open {
+            right: 0;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .close-cart {
+            font-size: 22px;
+            cursor: pointer;
+            color: #333;
+            background: none;
+            border: none;
+        }
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 8px;
+            font-size: 13px;
+        }
+        .cart-footer {
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            text-align: center;
+        }
+        .total-price {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .checkout-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Mobile Responsive Media Queries */
+        @media(max-width: 900px) {
+            .mobile-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(max-width: 480px) {
+            .mobile-grid {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+            }
+            .top-bar-flex {
+                padding: 10px;
+            }
+            .logo-area h1 {
+                font-size: 22px;
+            }
+            .logo-area p {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="top-bar-flex">
+            <div class="logo-area">
+                <h1>স্বপ্নের হাট</h1>
+                <p>Best Mobile Collection</p>
+            </div>
+            <div>
+                <button class="cart-trigger-btn" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i> কার্ট (<span id="cartCount">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <nav class="main-nav" style="padding: 0 20px;">
+            <ul style="display: flex; list-style: none; gap: 15px; padding: 0;">
+                <li><a href="index.html" style="text-decoration:none; color:#333; font-weight:bold;">HOME</a></li>
+                <li><a href="laptop.html" style="text-decoration:none; color:#333; font-weight:bold;">LAPTOPS</a></li>
+                <li><a href="#" class="active" style="text-decoration:none; color:#00b4db; font-weight:bold;">MOBILES</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mobile Products Section -->
+    <section>
+        <h2 class="main-heading" style="text-align:center; margin-top:20px;">All Mobile Series</h2>
+        
+        <div class="mobile-grid">
+            <!-- Mobile 1 -->
+            <div class="mobile-card">
+                <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="iPhone 15 Pro">
+                <h4>Apple iPhone 15 Pro</h4>
+                <p class="price">৳ ১,৩৫,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Apple iPhone 15 Pro', 135000)">Add to Cart</button>
+            </div>
+
+            <!-- Mobile 2 -->
+            <div class="mobile-card">
+                <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300" alt="Samsung Galaxy S24">
+                <h4>Samsung Galaxy S24 Ultra</h4>
+                <p class="price">৳ ১,২৫,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Samsung Galaxy S24 Ultra', 125000)">Add to Cart</button>
+            </div>
+
+            <!-- Mobile 3 -->
+            <div class="mobile-card">
+                <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" alt="Xiaomi 14 Pro">
+                <h4>Xiaomi 14 Pro</h4>
+                <p class="price">৳ ৮৫,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Xiaomi 14 Pro', 85000)">Add to Cart</button>
+            </div>
+
+            <!-- Mobile 4 -->
+            <div class="mobile-card">
+                <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?w=300" alt="OnePlus 12">
+                <h4>OnePlus 12 5G</h4>
+                <p class="price">৳ ৭৬,০০০</p>
+                <button class="buy-btn" onclick="addToCart('OnePlus 12 5G', 76000)">Add to Cart</button>
+            </div>
+
+            <!-- Mobile 5 -->
+            <div class="mobile-card">
+                <img src="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=300" alt="Realme GT 5">
+                <h4>Realme GT 5 Pro</h4>
+                <p class="price">৳ ৬৫,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Realme GT 5 Pro', 65000)">Add to Cart</button>
+            </div>
+
+            <!-- Mobile 6 -->
+            <div class="mobile-card">
+                <img src="
