@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Series - স্বপ্নের হাট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .laptop-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .laptop-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .laptop-card:hover {
+            transform: translateY(-5px);
+            border-color: #00b4db;
+        }
+        .laptop-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .laptop-card h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .laptop-card .price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        .buy-btn {
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Cart Button & Drawer Styles */
+        .cart-trigger-btn {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .top-bar-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 320px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+            transition: 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .cart-drawer.open {
+            right: 0;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .close-cart {
+            font-size: 20px;
+            cursor: pointer;
+            color: #333;
+            background: none;
+            border: none;
+        }
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 8px;
+            font-size: 13px;
+        }
+        .cart-footer {
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            text-align: center;
+        }
+        .total-price {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .checkout-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media(max-width: 768px) {
+            .laptop-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="top-bar-flex">
+            <div class="logo-area">
+                <h1>স্বপ্নের হাট</h1>
+                <p>Best Laptop Collection</p>
+            </div>
+            <div>
+                <button class="cart-trigger-btn" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i> কার্ট (<span id="cartCount">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <nav class="main-nav" style="padding: 0 20px;">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="#" class="active">LAPTOPS</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Laptop Products Section -->
+    <section>
+        <h2 class="main-heading" style="text-align:center; margin-top:20px;">All Laptop Series</h2>
+        
+        <div class="laptop-grid">
+            <!-- Laptop 1 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="MacBook Pro">
+                <h4>Apple MacBook Air M1</h4>
+                <p class="price">৳ ৯৫,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Apple MacBook Air M1', 95000)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 2 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="HP Pavilion">
+                <h4>HP Pavilion 15 Core i5</h4>
+                <p class="price">৳ ৬৮,৫০০</p>
+                <button class="buy-btn" onclick="addToCart('HP Pavilion 15 Core i5', 68500)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 3 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="Dell Inspiron">
+                <h4>Dell Inspiron 14 Ryzen 5</h4>
+                <p class="price">৳ ৬২,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Dell Inspiron 14 Ryzen 5', 62000)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 4 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="Asus VivoBook">
+                <h4>Asus VivoBook 15 OLED</h4>
+                <p class="price">৳ ৭৪,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Asus VivoBook 15 OLED', 74000)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 5 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="Lenovo IdeaPad">
+                <h4>Lenovo IdeaPad Slim 3</h4>
+                <p class="price">৳ ৫৫,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Lenovo IdeaPad Slim 3', 55000)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 6 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="Acer Nitro">
+                <h4>Acer Nitro 5 Gaming</h4>
+                <p class="price">৳ ৮৮,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Acer Nitro 5 Gaming', 88000)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Drawer Sidebar -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>শপিং কার্ট</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <p style="text-align: center; color: #777; margin-top: 20px;">আপনার কার্ট খালি আছে।</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-price" id="totalPriceText">মোট: ৳ ০</div>
+            <button class="checkout-btn" onclick="checkoutOrder()">চেকআউট করুন</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="site-footer" style="text-align:center; padding:20px;">
+        <div class="copyright">
+            <p>&copy; 2026 Shopner Hat. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Cart Functionality -->
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+            
+            // Open cart drawer automatically
+            let drawer = document.getElementById('cartDrawer');
+            if (!drawer.classList.contains('open')) {
+                drawer.classList.add('open');
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+        }
+
+        function updateCartUI() {
+            const countElem = document.getElementById('cartCount');
+            const container = document.getElementById('cartItemsContainer');
+            const totalText = document.getElementById('totalPriceText');
+
+            countElem.innerText = cart.length;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #777; margin-top: 20px;">আপনার কার্ট খালি আছে।</p>';
+                totalText.innerText = 'মোট: ৳ ০';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>৳ ${item.price.toLocaleString()}</small>
+                        </div>
+                        <button onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer;" title="Remove"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            totalText.innerText = `মোট: ৳ ${total.toLocaleString()}`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkoutOrder() {
+            if (cart.length === 0) {
+                alert('আপনার কার্ট খালি আছে!');
+                return;
+            }
+
+            // কাস্টমারের নাম ও ফোন নম্বর নেওয়া
+            let customerName = prompt("আপনার নাম লিখুন:");
+            if (!customerName) return;
+
+            let customerPhone = prompt("আপনার মোবাইল নম্বর লিখুন:");
+            if (!customerPhone) return;
+
+            let customerAddress = prompt("ডেলিভারি ঠিকানা লিখুন:");
+            if (!customerAddress) return;
+
+            // আগের সেভ করা অর্ডারগুলো খুঁজে বের করা
+            let allOrders = JSON.parse(localStorage.getItem('shopnerHatOrders')) || [];
+
+            // নতুন অর্ডারের তথ্য তৈরি করা
+            let newOrder = {
+                id: 'ORD-' + Math.floor(1000 + Math.random() * 9000),
+                name: customerName,
+                phone: customerPhone,
+                address: customerAddress,
+                items: cart,
+                total: cart.reduce((sum, item) => sum + item.price, 0),
+                date: new Date().toLocaleString()
+            };
+
+            // অর্ডার লিস্টে যোগ করে সেভ করা
+            allOrders.push(newOrder);
+            localStorage.setItem('shopnerHatOrders', JSON.stringify(allOrders));
+
+            alert('ধন্যবাদ ' + customerName + '! আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে। অর্ডার আইডি: ' + newOrder.id);
+            
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        
+        }
+    </script>
+
+</body>
+</html>
+

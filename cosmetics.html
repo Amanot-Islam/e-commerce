@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetics - স্বপ্নের হাট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Layout */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: #f9f9f9;
+        }
+        .cosmetics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .cosmetics-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .cosmetics-card:hover {
+            transform: translateY(-5px);
+            border-color: #00b4db;
+        }
+        .cosmetics-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .cosmetics-card h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .cosmetics-card .price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        .buy-btn {
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Cart Button & Drawer Styles */
+        .cart-trigger-btn {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .top-bar-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            max-width: 85%;
+            height: 100%;
+            background: #fff;
+            box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+            transition: 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .cart-drawer.open {
+            right: 0;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .close-cart {
+            font-size: 22px;
+            cursor: pointer;
+            color: #333;
+            background: none;
+            border: none;
+        }
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 8px;
+            font-size: 13px;
+        }
+        .cart-footer {
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            text-align: center;
+        }
+        .total-price {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .checkout-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Responsive Media Queries */
+        @media(max-width: 900px) {
+            .cosmetics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(max-width: 480px) {
+            .cosmetics-grid {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+            }
+            .top-bar-flex {
+                padding: 10px;
+            }
+            .logo-area h1 {
+                font-size: 22px;
+            }
+            .logo-area p {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="top-bar-flex">
+            <div class="logo-area">
+                <h1>স্বপ্নের হাট</h1>
+                <p>Cosmetics</p>
+            </div>
+            <div>
+                <button class="cart-trigger-btn" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i> কার্ট (<span id="cartCount">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <!-- নেভিগেশন মেনু (যেটি আপনার ফাইলে হয়তো বাদ পড়েছিল) -->
+        <nav class="main-nav" style="padding: 0 20px; max-width: 1100px; margin: 0 auto;">
+            <ul style="display: flex; list-style: none; gap: 15px; padding: 0;">
+                <li><a href="index.html" style="text-decoration:none; color:#333; font-weight:bold;">HOME</a></li>
+                <li><a href="laptop.html" style="text-decoration:none; color:#333; font-weight:bold;">LAPTOPS</a></li>
+                <li><a href="mobile.html" style="text-decoration:none; color:#333; font-weight:bold;">MOBILES</a></li>
+                <li><a href="cosmetics.html" style="text-decoration:none; color:#00b4db; font-weight:bold;">COSMETICS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Cosmetics Products Section (প্রোডাক্ট কার্ডগুলো দেখানোর জন্য এই অংশ জরুরি) -->
+    <section>
+        <h2 class="main-heading" style="text-align:center; margin-top:20px;">Cosmetics & Beauty Collection</h2>
+        
+        <div class="cosmetics-grid">
+            <!-- Product 1 -->
+            <div class="cosmetics-card">
+                <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=300" alt="Matte Lipstick">
+                <h4>Maybelline Matte Lipstick</h4>
+                <p class="price">৳ ১,২০০</p>
+                <button class="buy-btn" onclick="addToCart('Maybelline Matte Lipstick', 1200)">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="cosmetics-card">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300" alt="Face Serum">
+                <h4>The Ordinary Face Serum</h4>
+                <p class="price">৳ ১,৮০০</p>
+                <button class="buy-btn" onclick="addToCart('The Ordinary Face Serum', 1800)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide-out Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>আপনার কার্ট</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align:center; color:#888;">কার্ট খালি আছে</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-price">মোট: ৳ <span id="totalPrice">0</span></div>
+            <button class="checkout-btn" onclick="checkout()">অর্ডার সম্পন্ন করুন</button>
+        </div>
+    </div>
+
+    <!-- Cart JavaScript -->
+    <script>
+        let cart = [];
+
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartCountSpan = document.getElementById('cartCount');
+            const totalPriceSpan = document.getElementById('totalPrice');
+
+            cartCountSpan.innerText = cart.length;
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="text-align:center; color:#888;">কার্ট খালি আছে</p>';
+                totalPriceSpan.innerText = '0';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <span style="color:#e74c3c;">৳ ${item.price.toLocaleString()}</span>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            cartItemsDiv.innerHTML = html;
+            totalPriceSpan.innerText = total.toLocaleString();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('আপনার কার্টে কোনো পণ্য নেই!');
+                return;
+            }
+            alert('ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+    </script>
+
+</body>
+</html>
