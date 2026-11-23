@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Series - স্বপ্নের হাট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="top-bar-flex">
+            <div class="logo-area">
+                 <img src="images/logo.png" alt="logo">
+                <p>Best Laptop Collection</p>
+            </div>
+            <div>
+                <button class="cart-trigger-btn" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i> কার্ট (<span id="cartCount">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <nav class="main-nav" style="padding: 0 20px;">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="#" class="active">LAPTOPS</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Laptop Products Section -->
+    <section>
+        <h2 class="main-heading" style="text-align:center; margin-top:20px;">All Laptop Series</h2>
+        
+        <div class="laptop-grid">
+            <!-- Laptop 1 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="MacBook Pro">
+                <h4>Apple MacBook Air M1</h4>
+                <p class="price">৳ ৯৫,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Apple MacBook Air M1', 95000)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 2 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="HP Pavilion">
+                <h4>HP Pavilion 15 Core i5</h4>
+                <p class="price">৳ ৬৮,৫০০</p>
+                <button class="buy-btn" onclick="addToCart('HP Pavilion 15 Core i5', 68500)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 3 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="Dell Inspiron">
+                <h4>Dell Inspiron 14 Ryzen 5</h4>
+                <p class="price">৳ ৬২,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Dell Inspiron 14 Ryzen 5', 62000)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 4 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="Asus VivoBook">
+                <h4>Asus VivoBook 15 OLED</h4>
+                <p class="price">৳ ৭৪,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Asus VivoBook 15 OLED', 74000)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 5 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="Lenovo IdeaPad">
+                <h4>Lenovo IdeaPad Slim 3</h4>
+                <p class="price">৳ ৫৫,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Lenovo IdeaPad Slim 3', 55000)">Add to Cart</button>
+            </div>
+
+            <!-- Laptop 6 -->
+            <div class="laptop-card">
+                <img src="images/Laptop.jpg" alt="Acer Nitro">
+                <h4>Acer Nitro 5 Gaming</h4>
+                <p class="price">৳ ৮৮,০০০</p>
+                <button class="buy-btn" onclick="addToCart('Acer Nitro 5 Gaming', 88000)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide-out Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer" style="position: fixed; top: 0; right: -350px; width: 320px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: 0.3s; z-index: 1000; display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;">
+        <div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+            <h3>শপিং কার্ট</h3>
+            <button class="close-cart" onclick="toggleCart()" style="background: none; border: none; font-size: 22px; cursor: pointer;">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer" style="flex: 1; overflow-y: auto; padding: 15px 0;">
+            <p style="text-align: center; color: #777; margin-top: 20px;">আপনার কার্ট খালি আছে।</p>
+        </div>
+        <div class="cart-footer" style="border-top: 1px solid #ddd; padding-top: 15px;">
+            <div class="total-price" id="totalPriceText" style="font-weight: bold; margin-bottom: 10px;">মোট: ৳ ০</div>
+            <button class="checkout-btn" onclick="checkoutOrder()" style="background: #28a745; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer;">চেকআউট করুন</button>
+        </div>
+    </div>
+
+    <!-- bKash Payment Modal -->
+    <div class="payment-modal" id="bkashModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center;">
+        <div class="payment-box" style="background: #fff; padding: 25px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center; border-top: 6px solid #e2136e;">
+            <h3 style="color: #e2136e; margin-bottom: 10px;">bKash পেমেন্ট করুন</h3>
+            <div class="bkash-info" style="background: #fce4ec; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 14px;">
+                <p style="margin: 0 0 5px 0;">নিচের বিকাশ পার্সোনাল নম্বরে Send Money করুন:</p>
+                <h4 style="margin: 5px 0; color: #e2136e;">017XXXXXXXX (Personal)</h4>
+                <p id="modalTotalAmount" style="font-weight: bold; color: #333; margin: 5px 0 0 0;"></p>
+            </div>
+            
+            <input type="text" id="custName" placeholder="আপনার পূর্ণ নাম" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+            <input type="text" id="custAddress" placeholder="ডেলিভারি ঠিকানা" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+            <input type="text" id="custPhone" placeholder="মোবাইল নম্বর" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+            <input type="text" id="custBkashNum" placeholder="যে বিকাশ নম্বর থেকে টাকা পাঠিয়েছেন" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+            <input type="text" id="custTrxId" placeholder="bKash Transaction ID (TrxID)" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+            
+            <button onclick="verifyAndCompleteOrder()" style="background: #e2136e; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px;">পেমেন্ট নিশ্চিত করুন</button>
+            <button onclick="closeBkashModal()" style="background: #777; color: white; border: none; padding: 8px; width: 100%; border-radius: 5px; cursor: pointer; margin-top: 8px;">বাতিল করুন</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="site-footer" style="text-align:center; padding:20px;">
+        <div class="copyright">
+            <p>&copy; 2026 Shopner Hat. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Single JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>

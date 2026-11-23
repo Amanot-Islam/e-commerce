@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetics - স্বপ্নের হাট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="top-bar-flex">
+            <div class="logo-area">
+                <img src="images/logo.png" alt="logo">
+                <p>Cosmetics</p>
+            </div>
+            <div>
+                <button class="cart-trigger-btn" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i> কার্ট (<span id="cartCount">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <nav class="main-nav" style="padding: 0 20px; max-width: 1100px; margin: 0 auto;">
+            <ul style="display: flex; list-style: none; gap: 15px; padding: 0;">
+                <li><a href="index.html" style="text-decoration:none; color:#333; font-weight:bold;">HOME</a></li>
+                <li><a href="laptop.html" style="text-decoration:none; color:#333; font-weight:bold;">LAPTOPS</a></li>
+                <li><a href="mobile.html" style="text-decoration:none; color:#333; font-weight:bold;">MOBILES</a></li>
+                <li><a href="cosmetics.html" style="text-decoration:none; color:#00b4db; font-weight:bold;">COSMETICS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Cosmetics Products Section -->
+    <section>
+        <h2 class="main-heading" style="text-align:center; margin-top:20px;">Cosmetics & Beauty Collection</h2>
+        
+        <div class="cosmetics-grid">
+            <!-- Product 1 -->
+            <div class="cosmetics-card">
+                <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=300" alt="Matte Lipstick">
+                <h4>Maybelline Matte Lipstick</h4>
+                <p class="price">৳ ১,২০০</p>
+                <button class="buy-btn" onclick="addToCart('Maybelline Matte Lipstick', 1200)">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="cosmetics-card">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300" alt="Face Serum">
+                <h4>The Ordinary Face Serum</h4>
+                <p class="price">৳ ১,৮০০</p>
+                <button class="buy-btn" onclick="addToCart('The Ordinary Face Serum', 1800)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide-out Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>শপিং কার্ট</h3>
+            <button type="button" class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <p style="text-align: center; color: #777; margin-top: 20px;">আপনার কার্ট খালি আছে।</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-price" id="totalPriceText">মোট: ৳ ০</div>
+            <button type="button" class="checkout-btn" onclick="checkoutOrder()">চেকআউট করুন</button>
+        </div>
+    </div>
+
+    <!-- bKash Payment Modal -->
+    <div class="payment-modal" id="bkashModal">
+        <div class="payment-box">
+            <h3>bKash পেমেন্ট করুন</h3>
+            <div class="bkash-info">
+                <p>নিচের বিকাশ পার্সোনাল নম্বরে <strong>Send Money</strong> করুন:</p>
+                <h4 style="margin: 5px 0; color: #e2136e;">017XXXXXXXX (Personal)</h4>
+                <p id="modalTotalAmount" style="font-weight: bold; color: #333;"></p>
+            </div>
+            
+            <input type="text" id="custName" placeholder="আপনার পূর্ণ নাম" required>
+            <input type="text" id="custAddress" placeholder="ডেলিভারি ঠিকানা" required>
+            <input type="text" id="custPhone" placeholder="আপনার যোগাযোগের ফোন নম্বর" required>
+            <input type="text" id="custBkashNum" placeholder="যে নম্বর থেকে টাকা পাঠিয়েছেন" required>
+            <input type="text" id="custTrxId" placeholder="bKash Transaction ID (TrxID)" required>
+            
+            <button type="button" class="confirm-pay-btn" onclick="verifyAndCompleteOrder()">পেমেন্ট নিশ্চিত করুন</button>
+            <button type="button" class="cancel-pay-btn" onclick="closeBkashModal()">বাতিল করুন</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

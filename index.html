@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্বপ্নের হাট - Shopner Hat</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="carousel.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="logo-area">
+                                <img src="images/logo.png" alt="logo">
+                <div class="slogan1"><marquee><p class="slogan">Our office started at 09.00 AM and Closed 08.00 PM. Thanks for with us. Happy Shopping</p></marquee></div>
+<div class="slogan1"><marquee> <p class="developer-credit">Design &amp; Developed by <span class="dev-name">Amanot Islam</span></p></marquee></div>
+            </div>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">SERVICES</a></li>
+                <li><a href="#">PORTFOLIO</a></li>
+                <li><a href="contact/contact.html" target="_blank">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero / Banner Section -->
+    <!-- Hero / Banner Section with Image Carousel -->
+<section class="hero-section">
+    <div class="carousel-container">
+        <!-- স্লাইডগুলো -->
+      <div class="carousel-container" id="shopnerCarousel">
+    <!-- স্লাইডগুলো (নিজের ছবির পাথ এখানে দিন) -->
+    <div class="carousel-slide active" style="background-image: url('images/slide1.png');"></div>
+    <div class="carousel-slide" style="background-image: url('images/slide2.png');"></div>
+    <div class="carousel-slide" style="background-image: url('images/slide3.png');"></div>
+
+    <!-- Prev ও Next বাটন -->
+    <button type="button" class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+    <button type="button" class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+</div>
+
+        <!-- সার্চ বক্স -->
+        <div class="search-box">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" id="globalSearch" onkeypress="handleGlobalSearch(event)" placeholder="যেমন: Laptop, Mobile, Watch...">
+</div>
+</section>
+
+    <!-- Special Offer Section -->
+    <section class="special-offer-section">
+        <div class="section-title-banner">
+            <h2>SPECIAL OFFER</h2>
+        </div>
+        <div class="product-row">
+            <div class="product-card">
+                <img src="images/offer.jpg" alt="Lays" onerror="this.src='https://via.placeholder.com/150'">
+                <span class="tag new-arrival">New Arrival</span>
+            </div>
+            <div class="product-card">
+                <img src="images/chips1.png" alt="Chocos">
+                <span class="tag discount">Less 10Tk</span>
+            </div>
+            <div class="product-card">
+                <img src="images/chips2.png" alt="Popcorn">
+                <span class="tag discount">Less 10Tk</span>
+            </div>
+            <div class="product-card">
+                <img src="images/chips3.png" alt="Garnier">
+                <span class="tag discount">Less 10Tk</span>
+            </div>
+            <div class="product-card">
+                <img src="images/chips4.jpg" alt="Kurkure">
+                <span class="tag discount">Less 10Tk</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Products Section -->
+    <section class="our-products">
+        <h2 class="main-heading">Our Products</h2>
+        <div class="category-grid">
+           
+ <div class="category-item">
+                <a href="laptop.html" style="text-decoration: none; color: inherit; display: block;">
+                    <img src="images/Laptop.jpg" alt="Laptop Series">
+                    <h3>Laptop Series</h3>
+                </a>
+            </div>
+            
+<div class="category-item">
+                <a href="mobile.html" style="text-decoration: none; color: inherit; display: block;">
+                    <img src="images/Mobile Series.jpg" alt="Mobile Series" onerror="this.src='https://via.placeholder.com/200x150'">
+                    <h3>Mobile Series</h3>
+                </a>
+            </div>
+
+            <div class="category-item">
+<a href="electronics.html" style="text-decoration: none; color: inherit; display: block;">
+
+                <img src="images/electronic products.jpg" alt="Electronic Products">
+                <h3>Electronic Products</h3>
+                </a>
+            </div>
+            <div class="category-item">
+<a href="cosmetics.html" style="text-decoration: none; color: inherit; display: block;">
+                <img src="images/cosmetics.jpg" alt="Cosmetics">
+                <h3>Cosmetics</h3> 
+</a>
+
+            </div>
+            <div class="category-item">
+                <img src="https://via.placeholder.com/200x150" alt="Dry Foods">
+                <h3>Dry Foods</h3>
+            </div>
+            <div class="category-item sweets">
+                <img src="https://via.placeholder.com/200x150" alt="Sweets">
+                <h3>Sweets</h3>
+            </div>
+            <div class="category-item">
+                <img src="https://via.placeholder.com/200x150" alt="Fashion Clothes">
+                <h3>Fashion Clothes</h3>
+            </div>
+            <div class="category-item">
+                <img src="https://via.placeholder.com/200x150" alt="Baby Toys">
+                <h3>Baby Toys</h3>
+            </div>
+            <div class="category-item">
+                <img src="https://via.placeholder.com/200x150" alt="Kitchen Product">
+                <h3>Kitchen Product</h3>
+            </div>
+            <div class="category-item">
+                <img src="https://via.placeholder.com/200x150" alt="Books">
+                <h3>Books</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Fashion Section -->
+    <section class="top-fashion">
+        <h2 class="main-heading">TOP FASHION</h2>
+        <div class="fashion-grid">
+            <div class="diamond-box"><img src="https://via.placeholder.com/150" alt="Fashion 1"></div>
+            <div class="diamond-box"><img src="https://via.placeholder.com/150" alt="Fashion 2"></div>
+            <div class="diamond-box"><img src="https://via.placeholder.com/150" alt="Fashion 3"></div>
+            <div class="diamond-box"><img src="https://via.placeholder.com/150" alt="Fashion 4"></div>
+            <div class="diamond-box"><img src="https://via.placeholder.com/150" alt="Fashion 5"></div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="#">Shop Details</a></li>
+                    <li><a href="#">Team Member</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="contact/contact.html" target="_blank">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Services</h3>
+                <ul>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Faq's</a></li>
+                    <li><a href="contact/contact.html" target="_blank">Contact</a></li>
+                    <li><a href="#">Online Shopping</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>My Account</h3>
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-brand-btn">
+            <button>SHOPNER HAT</button>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="social-links">
+                <p>FOLLOW US AT:</p>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <div class="payment-methods">
+                <p>WE ACCEPT:</p>
+                <img src="https://img.icons8.com/color/32/mastercard.png" alt="Mastercard">
+                <img src="https://img.icons8.com/color/32/visa.png" alt="Visa">
+                <img src="https://img.icons8.com/color/32/bkash.png" alt="bKash">
+                <img src="https://img.icons8.com/color/32/rocket.png" alt="Rocket">
+            </div>
+        </div>
+
+        <div class="footer-info-bar">
+            <p><i class="fa-solid fa-location-dot"></i> 28/1/C Toyenbee circular Road , Motijheel , Dhaka</p>
+            <p><i class="fa-solid fa-envelope"></i> creative.it.amanot@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> +8801743619981</p>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Shopner Hat. All Rights Reserved | Font Page Design by Amanot Islam</p>
+        </div>
+    </footer>
+
+<script src="carousel.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
