@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer & Desktop Series - স্বপ্নের হাট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="computer.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="top-bar-flex">
+            <div class="logo-area">
+                <img src="images/logo.png" alt="logo">
+                <p>Best Desktop &amp; Gaming PC Collection</p>
+            </div>
+            <div>
+                <button type="button" class="cart-trigger-btn" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i> কার্ট (<span id="cartCount">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="laptop.html">LAPTOPS</a></li>
+                <li><a href="computer.html" class="active">COMPUTERS</a></li>
+                <li><a href="mobile.html">MOBILES</a></li>
+                <li><a href="electronics.html">ELECTRONICS</a></li>
+                <li><a href="cosmetics.html">COSMETICS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Computer Products Section -->
+    <section>
+        <h2 class="main-heading">All Desktop &amp; Gaming PC Series</h2>
+
+        <div class="computer-grid">
+            <!-- Computer 1 -->
+            <div class="computer-card">
+                <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=300" alt="RGB Gaming PC">
+                <h4>Ryzen 7 5700X RGB Gaming PC</h4>
+                <p class="price">৳ ৯২,০০০</p>
+                <button type="button" class="buy-btn" onclick="addToCart('Ryzen 7 5700X RGB Gaming PC', 92000)">Add to Cart</button>
+            </div>
+
+            <!-- Computer 2 -->
+            <div class="computer-card">
+                <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300" alt="Office Desktop PC">
+                <h4>Intel Core i5 12th Gen Full Set</h4>
+                <p class="price">৳ ৫৪,৫০০</p>
+                <button type="button" class="buy-btn" onclick="addToCart('Intel Core i5 12th Gen Full Set', 54500)">Add to Cart</button>
+            </div>
+
+            <!-- Computer 3 -->
+            <div class="computer-card">
+                <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=300" alt="Apple iMac">
+                <h4>Apple iMac 24-inch M3 (8GB/256GB)</h4>
+                <p class="price">৳ ১,৬৫,০০০</p>
+                <button type="button" class="buy-btn" onclick="addToCart('Apple iMac 24-inch M3', 165000)">Add to Cart</button>
+            </div>
+
+            <!-- Computer 4 -->
+            <div class="computer-card">
+                <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?w=300" alt="Budget Student PC">
+                <h4>Ryzen 5 5600G Budget Desktop</h4>
+                <p class="price">৳ ৪২,০০০</p>
+                <button type="button" class="buy-btn" onclick="addToCart('Ryzen 5 5600G Budget Desktop', 42000)">Add to Cart</button>
+            </div>
+
+            <!-- Computer 5 -->
+            <div class="computer-card">
+                <img src="https://images.unsplash.com/photo-1551645120-d70bfe84c826?w=300" alt="Gaming Monitor">
+                <h4>ASUS TUF 24" 165Hz Gaming Monitor</h4>
+                <p class="price">৳ ২৪,৮০০</p>
+                <button type="button" class="buy-btn" onclick="addToCart('ASUS TUF 24 165Hz Gaming Monitor', 24800)">Add to Cart</button>
+            </div>
+
+            <!-- Computer 6 -->
+            <div class="computer-card">
+                <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300" alt="Graphics Card">
+                <h4>NVIDIA RTX 4060 8GB Graphics Card</h4>
+                <p class="price">৳ ৪৬,৫০০</p>
+                <button type="button" class="buy-btn" onclick="addToCart('NVIDIA RTX 4060 8GB Graphics Card', 46500)">Add to Cart</button>
+            </div>
+
+            <!-- Computer 7 -->
+            <div class="computer-card">
+                <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=300" alt="Mechanical Keyboard">
+                <h4>Keychron K2 RGB Mechanical Keyboard</h4>
+                <p class="price">৳ ৮,৯০০</p>
+                <button type="button" class="buy-btn" onclick="addToCart('Keychron K2 RGB Mechanical Keyboard', 8900)">Add to Cart</button>
+            </div>
+
+            <!-- Computer 8 -->
+            <div class="computer-card">
+                <img src="https://images.unsplash.com/photo-1629429408209-1f912961dbd8?w=300" alt="Gaming Casing">
+                <h4>Corsair 4000D Airflow Mid-Tower Case</h4>
+                <p class="price">৳ ১০,৫০০</p>
+                <button type="button" class="buy-btn" onclick="addToCart('Corsair 4000D Airflow Mid-Tower Case', 10500)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide-out Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>শপিং কার্ট</h3>
+            <button type="button" class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <p class="empty-cart-text">আপনার কার্ট খালি আছে।</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-price" id="totalPriceText">মোট: ৳ ০</div>
+            <button type="button" class="checkout-btn" onclick="checkoutOrder()">চেকআউট করুন</button>
+        </div>
+    </div>
+
+    <!-- bKash Payment Modal -->
+    <div class="payment-modal" id="bkashModal">
+        <div class="payment-box">
+            <h3>bKash পেমেন্ট করুন</h3>
+            <div class="bkash-info">
+                <p>নিচের বিকাশ পার্সোনাল নম্বরে <strong>Send Money</strong> করুন:</p>
+                <h4 class="bkash-number">017XXXXXXXX (Personal)</h4>
+                <p id="modalTotalAmount" class="modal-total-amount"></p>
+            </div>
+
+            <input type="text" id="custName" placeholder="আপনার পূর্ণ নাম" required>
+            <input type="text" id="custAddress" placeholder="ডেলিভারি ঠিকানা" required>
+            <input type="text" id="custPhone" placeholder="আপনার যোগাযোগের ফোন নম্বর" required>
+            <input type="text" id="custBkashNum" placeholder="যে নম্বর থেকে টাকা পাঠিয়েছেন" required>
+            <input type="text" id="custTrxId" placeholder="bKash Transaction ID (TrxID)" required>
+
+            <button type="button" class="confirm-pay-btn" onclick="verifyAndCompleteOrder()">পেমেন্ট নিশ্চিত করুন</button>
+            <button type="button" class="cancel-pay-btn" onclick="closeBkashModal()">বাতিল করুন</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="copyright">
+            <p>&copy; 2026 Shopner Hat. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="computer.js"></script>
+</body>
+</html>
