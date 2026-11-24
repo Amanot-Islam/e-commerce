@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetics - স্বপ্নের হাট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="top-bar"><div class="logo-area"><img src="images/logo.png" alt="logo"><p>Cosmetics &amp; Beauty</p></div><div><button type="button" class="cart-trigger-btn" onclick="toggleCart()"><i class="fa-solid fa-cart-shopping"></i> কার্ট (<span class="cart-count">0</span>)</button></div></div>
+        <nav class="main-nav"><ul><li><a href="index.html">HOME</a></li><li><a href="laptop.html">LAPTOPS</a></li><li><a href="computer.html">COMPUTERS</a></li><li><a href="mobile.html">MOBILES</a></li><li><a href="electronics.html">ELECTRONICS</a></li><li><a href="cosmetics.html" class="active">COSMETICS</a></li><li><a href="baby.html">BABY</a></li><li><a href="books.html">BOOKS</a></li><li><a href="kitchen.html">KITCHEN</a></li><li><a href="foods.html">FOODS</a></li><li><a href="dryfoods.html">DRY FOODS</a></li><li><a href="fashion.html">FASHION</a></li></ul></nav>
+    </header>
+    <section>
+        <h2 class="main-heading" id="pageHeading"></h2>
+        <div class="item-grid" id="productGrid"></div>
+    </section>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header"><h3>শপিং কার্ট</h3><button type="button" class="close-cart" onclick="closeCart()">&times;</button></div>
+        <div class="cart-items" id="cartItemsContainer"><p class="empty-cart-text">আপনার কার্ট খালি আছে।</p></div>
+        <div class="cart-footer">
+            <div class="total-price" id="totalPriceText">মোট: ৳ ০</div>
+            <button type="button" class="checkout-btn" onclick="checkoutOrder()">চেকআউট করুন</button>
+        </div>
+    </div>
+
+    <div class="payment-modal" id="bkashModal">
+        <div class="payment-box">
+            <div id="checkoutForm">
+                <h3>অর্ডার ও পেমেন্ট</h3>
+                <div class="order-summary" id="orderSummary"></div>
+                <label for="payMethod">পেমেন্ট মাধ্যম</label>
+                <select id="payMethod" onchange="onPayMethodChange()">
+                    <option value="bkash">bKash</option><option value="nagad">Nagad</option>
+                    <option value="rocket">Rocket</option><option value="cod">ক্যাশ অন ডেলিভারি</option>
+                </select>
+                <div class="pay-info"><div id="payInstruction"></div><p id="modalTotalAmount" class="modal-total-amount"></p></div>
+                <input type="text" id="custName" placeholder="আপনার পূর্ণ নাম" autocomplete="name">
+                <input type="tel" id="custPhone" placeholder="যোগাযোগের মোবাইল নম্বর" autocomplete="tel" inputmode="numeric">
+                <input type="text" id="custAddress" placeholder="ডেলিভারি ঠিকানা" autocomplete="street-address">
+                <div id="onlinePayFields">
+                    <input type="tel" id="custBkashNum" placeholder="যে নম্বর থেকে টাকা পাঠিয়েছেন" inputmode="numeric">
+                    <input type="text" id="custTrxId" placeholder="Transaction ID (TrxID)">
+                </div>
+                <textarea id="custNote" rows="2" placeholder="অতিরিক্ত নোট (ঐচ্ছিক)"></textarea>
+                <button type="button" class="confirm-pay-btn" onclick="verifyAndCompleteOrder()">অর্ডার নিশ্চিত করুন</button>
+                <button type="button" class="cancel-pay-btn" onclick="closeBkashModal()">বাতিল করুন</button>
+            </div>
+            <div id="orderSuccess" class="success-box" style="display:none">
+                <h3>✅ অর্ডার সম্পন্ন!</h3>
+                <p id="successMsg"></p>
+                <a id="waLink" class="wa-btn" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp-এ অর্ডার পাঠান</a>
+                <button type="button" class="cancel-pay-btn" style="margin-top:12px" onclick="closeBkashModal()">বন্ধ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer"><div class="copyright"><p>&copy; 2026 Shopner Hat. All Rights Reserved</p></div></footer>
+
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+    <script>document.getElementById('pageHeading').textContent = CATALOG['cosmetics'].title; renderCategory('cosmetics');</script>
+</body>
+</html>

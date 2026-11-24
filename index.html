@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্বপ্নের হাট - Shopner Hat</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="logo-area">
+                                <img src="images/logo.png" alt="logo">
+                <div class="slogan1"><marquee><p class="slogan">Our office started at 09.00 AM and Closed 08.00 PM. Thanks for with us. Happy Shopping</p></marquee></div>
+<div class="slogan1"><marquee> <p class="developer-credit">Design &amp; Developed by <span class="dev-name">Amanot Islam</span></p></marquee></div>
+            </div>
+            <div><button type="button" class="cart-trigger-btn" onclick="toggleCart()"><i class="fa-solid fa-cart-shopping"></i> কার্ট (<span class="cart-count">0</span>)</button></div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="main-nav"><ul><li><a href="index.html" class="active">HOME</a></li><li><a href="laptop.html">LAPTOPS</a></li><li><a href="computer.html">COMPUTERS</a></li><li><a href="mobile.html">MOBILES</a></li><li><a href="electronics.html">ELECTRONICS</a></li><li><a href="cosmetics.html">COSMETICS</a></li><li><a href="baby.html">BABY</a></li><li><a href="books.html">BOOKS</a></li><li><a href="kitchen.html">KITCHEN</a></li><li><a href="foods.html">FOODS</a></li><li><a href="dryfoods.html">DRY FOODS</a></li><li><a href="fashion.html">FASHION</a></li></ul></nav>
+    </header>
+
+    <!-- Hero / Banner Section -->
+    <!-- Hero / Banner Section with Image Carousel -->
+<section class="hero-section">
+    <div class="carousel-container" id="shopnerCarousel">
+        <div class="carousel-slide slide-a active">
+            <div class="slide-text"><h2>ল্যাপটপ সিরিজ</h2><p>নতুন কালেকশন দেখুন</p><a class="slide-btn" href="laptop.html">এখনই দেখুন</a></div>
+            <div class="slide-img"><img src="images/Laptop.jpg" alt="Laptop"></div>
+        </div>
+        <div class="carousel-slide slide-b">
+            <div class="slide-text"><h2>মোবাইল ফোন</h2><p>জনপ্রিয় ব্র্যান্ডের স্মার্টফোন</p><a class="slide-btn" href="mobile.html">এখনই দেখুন</a></div>
+            <div class="slide-img"><img src="images/Mobile_Series.jpg" alt="Mobile"></div>
+        </div>
+        <div class="carousel-slide slide-c">
+            <div class="slide-text"><h2>ইলেকট্রনিকস ও হোম অ্যাপ্লায়েন্স</h2><p>ঘর সাজান আধুনিক পণ্যে</p><a class="slide-btn" href="electronics.html">এখনই দেখুন</a></div>
+            <div class="slide-img"><img src="images/electronic_products.jpg" alt="Electronics"></div>
+        </div>
+        <button type="button" class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+        <button type="button" class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch" onkeydown="handleGlobalSearch(event)" placeholder="যেমন: Laptop, Mobile, Watch...">
+    </div>
+</section>
+
+    <!-- Special Offer Section -->
+    <section class="special-offer-section">
+        <div class="section-title-banner"><h2>SPECIAL OFFER</h2></div>
+        <div class="product-row">
+            <a class="product-card" href="foods.html"><img src="images/offer.jpg" alt="Chips"><span class="tag new-arrival">New Arrival</span></a>
+            <a class="product-card" href="foods.html"><img src="images/chips1.png" alt="Chips"><span class="tag discount">Less 10Tk</span></a>
+            <a class="product-card" href="foods.html"><img src="images/chips2.png" alt="Chips"><span class="tag discount">Less 10Tk</span></a>
+            <a class="product-card" href="foods.html"><img src="images/chips3.png" alt="Lay's Wavy Chips"><span class="tag discount">Less 10Tk</span></a>
+            <a class="product-card" href="foods.html"><img src="images/Chips4.jpg" alt="Chips"><span class="tag discount">Less 10Tk</span></a>
+        </div>
+    </section>
+
+    <!-- Our Products Section -->
+    <section class="our-products">
+        <h2 class="main-heading">Our Products</h2>
+        <div class="category-grid">
+            <a class="category-item" href="laptop.html"><img src="images/Laptop.jpg" alt="Laptop Series"><h3>Laptop Series</h3></a>
+            <a class="category-item" href="mobile.html"><img src="images/Mobile_Series.jpg" alt="Mobile Series"><h3>Mobile Series</h3></a>
+            <a class="category-item" href="electronics.html"><img src="images/electronic_products.jpg" alt="Electronic Products"><h3>Electronic Products</h3></a>
+            <a class="category-item" href="cosmetics.html"><img src="images/cosmetics.jpg" alt="Cosmetics"><h3>Cosmetics</h3></a>
+            <a class="category-item" href="computer.html"><img src="images/computer.png" alt="Computer-Item"><h3>Computer-Item</h3></a>
+            <a class="category-item" href="baby.html"><img src="images/baby_toys.jpg" alt="Baby Toys"><h3>Baby Toys</h3></a>
+            <a class="category-item" href="books.html"><img src="images/books.jpg" alt="Books"><h3>Books</h3></a>
+            <a class="category-item" href="kitchen.html"><img src="images/kitchen_product.jpg" alt="Kitchen Products"><h3>Kitchen Products</h3></a>
+            <a class="category-item" href="foods.html"><img src="images/Foods.jpg" alt="Snacks &amp; Foods"><h3>Snacks &amp; Foods</h3></a>
+            <a class="category-item" href="dryfoods.html"><img src="images/dry_foods.jpg" alt="Dry Foods"><h3>Dry Foods</h3></a>
+        </div>
+    </section>
+
+    <!-- Top Fashion Section -->
+    <section class="top-fashion">
+        <h2 class="main-heading">TOP FASHION</h2>
+        <a class="fashion-banner" href="fashion.html"><img src="images/Fashion-Clothes.jpg" alt="Top Fashion"></a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="#">Shop Details</a></li>
+                    <li><a href="#">Team Member</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="contact/contact.html" target="_blank">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Services</h3>
+                <ul>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Faq's</a></li>
+                    <li><a href="contact/contact.html" target="_blank">Contact</a></li>
+                    <li><a href="#">Online Shopping</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>My Account</h3>
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-brand-btn">
+            <button>SHOPNER HAT</button>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="social-links">
+                <p>FOLLOW US AT:</p>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <div class="payment-methods">
+                <p>WE ACCEPT:</p>
+                <img src="https://img.icons8.com/color/32/mastercard.png" alt="Mastercard">
+                <img src="https://img.icons8.com/color/32/visa.png" alt="Visa">
+                <img src="https://img.icons8.com/color/32/bkash.png" alt="bKash">
+                <img src="https://img.icons8.com/color/32/rocket.png" alt="Rocket">
+            </div>
+        </div>
+
+        <div class="footer-info-bar">
+            <p><i class="fa-solid fa-location-dot"></i> 28/1/C Toyenbee circular Road , Motijheel , Dhaka</p>
+            <p><i class="fa-solid fa-envelope"></i> creative.it.amanot@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> +8801743619981</p>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Shopner Hat. All Rights Reserved | Front Page Design by Amanot Islam</p>
+        </div>
+    </footer>
+
+
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header"><h3>শপিং কার্ট</h3><button type="button" class="close-cart" onclick="closeCart()">&times;</button></div>
+        <div class="cart-items" id="cartItemsContainer"><p class="empty-cart-text">আপনার কার্ট খালি আছে।</p></div>
+        <div class="cart-footer">
+            <div class="total-price" id="totalPriceText">মোট: ৳ ০</div>
+            <button type="button" class="checkout-btn" onclick="checkoutOrder()">চেকআউট করুন</button>
+        </div>
+    </div>
+
+    <div class="payment-modal" id="bkashModal">
+        <div class="payment-box">
+            <div id="checkoutForm">
+                <h3>অর্ডার ও পেমেন্ট</h3>
+                <div class="order-summary" id="orderSummary"></div>
+                <label for="payMethod">পেমেন্ট মাধ্যম</label>
+                <select id="payMethod" onchange="onPayMethodChange()">
+                    <option value="bkash">bKash</option><option value="nagad">Nagad</option>
+                    <option value="rocket">Rocket</option><option value="cod">ক্যাশ অন ডেলিভারি</option>
+                </select>
+                <div class="pay-info"><div id="payInstruction"></div><p id="modalTotalAmount" class="modal-total-amount"></p></div>
+                <input type="text" id="custName" placeholder="আপনার পূর্ণ নাম" autocomplete="name">
+                <input type="tel" id="custPhone" placeholder="যোগাযোগের মোবাইল নম্বর" autocomplete="tel" inputmode="numeric">
+                <input type="text" id="custAddress" placeholder="ডেলিভারি ঠিকানা" autocomplete="street-address">
+                <div id="onlinePayFields">
+                    <input type="tel" id="custBkashNum" placeholder="যে নম্বর থেকে টাকা পাঠিয়েছেন" inputmode="numeric">
+                    <input type="text" id="custTrxId" placeholder="Transaction ID (TrxID)">
+                </div>
+                <textarea id="custNote" rows="2" placeholder="অতিরিক্ত নোট (ঐচ্ছিক)"></textarea>
+                <button type="button" class="confirm-pay-btn" onclick="verifyAndCompleteOrder()">অর্ডার নিশ্চিত করুন</button>
+                <button type="button" class="cancel-pay-btn" onclick="closeBkashModal()">বাতিল করুন</button>
+            </div>
+            <div id="orderSuccess" class="success-box" style="display:none">
+                <h3>✅ অর্ডার সম্পন্ন!</h3>
+                <p id="successMsg"></p>
+                <a id="waLink" class="wa-btn" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp-এ অর্ডার পাঠান</a>
+                <button type="button" class="cancel-pay-btn" style="margin-top:12px" onclick="closeBkashModal()">বন্ধ করুন</button>
+            </div>
+        </div>
+    </div>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
